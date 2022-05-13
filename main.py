@@ -1,16 +1,44 @@
-# This is a sample Python script.
-
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+import requests
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+URL = "https://data.fantasyfootballhub.co.uk/api/players-attack"
 
+PARAMS = {
+    'mingw': 36,
+    'maxgw': 36,
+    'type': 'total',
+    'venue': 'all',
+    'season': 2021,
+    'sortOn': 'points',
+    'qty':100,
+    'sortOrder': 'desc',
+    'playerSearch': '',
+    'minCost': 0,
+    'maxCost': 135,
+    'positions': '1,2,3,4',
+    'min_fdr': 1,
+    'max_fdr': 5,
+    'page_No': 1,
+    'lowMins': False,
+    'ppm': 0
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+}
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvY21zLmZhbnRhc3lmb290YmFsbGh1Yi5jby51ayIsImlhdCI6MTY1MTk5NTA1NCwibmJmIjoxNjUxOTk1MDU0LCJleHAiOjE5NjczNTUwNTQsImRhdGEiOnsidXNlciI6eyJpZCI6IjUyNzk5In19fQ.fmqPn_wOuVykWwV1zk2xOBgiQoEriZlTUW4WqTQ0e2E'
+
+HEADERS = {
+    'Token': 'Bearer ' + TOKEN,
+    'Authorization': 'r5C(e3.JeS^:_7LF'
+}
+
+response = requests.get(url = URL, params = PARAMS, headers = HEADERS)
+
+data = response.json()
+
+#print(data)
+
+import json
+
+json_formatted_str = json.dumps(data, indent=2)
+
+print(json_formatted_str)
